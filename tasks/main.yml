@@ -1,0 +1,29 @@
+---
+- name: "Find mount point on fstab"
+  lineinfile:
+    dest: /etc/fstab
+    line: "{{ nfs_server }}"
+  check_mode: true
+  register: presence
+  changed_when: false
+
+- when: presence.changed
+  block:
+    - name: "Install nfs-common package"
+      package:
+        name: "nfs-common"
+        state: present
+
+    - name: "Create mount point directory"
+      file:
+        path: "{{ nfs_folder }}"
+        state: directory
+        mode: '0755'
+
+- name: "Mount nfs share and add it to /etc/fstab"
+  mount:
+    src: "{{ nfs_server }}"
+    path: "{{ nfs_folder }}"
+    fstype: nfs
+    opts: "{{ nfs_opts }}"
+    state: mounted

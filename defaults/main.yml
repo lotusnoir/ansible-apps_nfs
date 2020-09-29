@@ -1,0 +1,4 @@
+---
+nfs_folder: "/data/logs"
+nfs_server: "ntx-nfs.example.net:/net-logs"
+nfs_opts: "rw,sync,nfsvers=4"
