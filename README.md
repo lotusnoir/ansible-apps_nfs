@@ -11,8 +11,9 @@ Deploy nfs mount point using ansible.
 
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
-| `nfs_version` | 0.8.0 | nfs version |
-| `nfs_binary_file` | /usr/local/bin/nfs | nfs binary name|
+| `nfs_folder` | /data/logs | mountpoint on server |
+| `nfs_server` | ntx-nfs.kosc.net:/net-logs | nfs server directory used for the mountpoint |
+| `nfs_opts` | 'rw,sync,nfsvers=4' | nfs mount options |
 
 ## Examples
 
